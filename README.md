@@ -82,7 +82,7 @@ Kasa Authenticator supports manual and optional automatic encrypted backups. Bac
 
 **Your choice of storage:** The app does not upload backup files to KASA servers. You may select a local folder or a folder made available by an Android document provider, including a provider that synchronizes files to your own cloud account. If you select such a provider, its handling of the files is outside KASA's control. Backup files stored outside the app remain your responsibility, including their safe storage and deletion.
 
-Keep the backup password and relevant account recovery methods safe. Without the necessary password or an available authorized local credential, an encrypted backup may not be recoverable.
+Keep the backup password and relevant account recovery methods safe. Without the correct backup password, an encrypted backup may not be recoverable. Unlocking the app with a fingerprint or pattern does not by itself decrypt a backup file.
 
 ## Import
 
