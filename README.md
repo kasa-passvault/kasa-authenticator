@@ -1,6 +1,6 @@
 # Kasa Authenticator Privacy Policy
 
-**Last updated:** August 9, 2026
+**Last updated:** November 13, 2026
 
 Kasa Authenticator is an offline-first two-factor authentication (2FA) app for Android.
 
@@ -22,9 +22,9 @@ Kasa Authenticator:
 
 ## Data Collection
 
-Kasa Authenticator does not collect personal data from users.
+Kasa Authenticator does not collect personal data for KASA-operated servers, analytics, advertising, or tracking. You can enter account labels and other information into the app; this information is processed and stored locally on your device, rather than collected by KASA.
 
-The app does not collect, transmit, sell, or share:
+KASA does not receive, sell, or share your locally stored:
 
 - Name
 - Email address
@@ -68,27 +68,27 @@ Sensitive authenticator data is stored in encrypted form. The app is designed so
 
 Kasa Authenticator does not request the Android INTERNET permission.
 
-Because of this, the app is not designed to send your authenticator data, usage data, analytics data, or tracking data over the internet.
+The app does not initiate internet transfers of authenticator data, usage data, analytics data, or tracking data. If you choose a folder or document supplied by another app or a cloud-backed Android document provider, that provider may handle or synchronize your selected encrypted backup file under its own terms. Kasa Authenticator does not control that provider or run its own cloud synchronization.
 
 ## Backup and Export
 
-Kasa Authenticator may provide encrypted backup, export, and import features.
+Kasa Authenticator supports manual and optional automatic encrypted backups. Backup files use password-based key derivation and authenticated encryption. You choose the backup password; its strength affects the protection of the file. A strong, unique password or passphrase is recommended but is not mandatory.
 
-Backups are created only when you explicitly choose to create them.
+**Manual backups:** When you request a manual backup, Android's document picker lets you choose where to save the encrypted file. The manual backup password is used for that operation and is not stored by the app.
 
-Backup files are encrypted with a password chosen by you. Kasa Authenticator does not know, store, upload, or recover your backup password.
+**Automatic backups:** Automatic Backup is optional and off by default. To enable it, you select a destination folder, grant access through Android's folder picker, set a backup password, and choose a daily, weekly, or monthly schedule. Android may delay scheduled work. The app creates encrypted backup files only in the folder you selected. It verifies new automatic backups and then removes older automatic backup copies in that folder when the configured retention limit is exceeded (default: three copies), while protecting the latest verified backup.
 
-If you lose your backup password, Kasa Authenticator cannot recover the encrypted backup for you.
+**Automatic backup password on your device:** To allow scheduled backups without asking for your password each time, the app stores the automatic backup password locally in encrypted form using an Android Keystore-protected key. This password is not uploaded to KASA. Turning Automatic Backup off does **not** erase the locally stored password; it remains until you replace it or remove the app's data. The app does not provide server-side password recovery.
 
-You are responsible for storing backup files and backup passwords safely.
+**Your choice of storage:** The app does not upload backup files to KASA servers. You may select a local folder or a folder made available by an Android document provider, including a provider that synchronizes files to your own cloud account. If you select such a provider, its handling of the files is outside KASA's control. Backup files stored outside the app remain your responsibility, including their safe storage and deletion.
+
+Keep the backup password and relevant account recovery methods safe. Without the necessary password or an available authorized local credential, an encrypted backup may not be recoverable.
 
 ## Import
 
-When you import a backup file, Kasa Authenticator processes the file locally on your device.
+When you choose a backup file through Android's document picker, Kasa Authenticator reads and processes it locally on your device. The app does not upload imported backup data to KASA servers.
 
-The app does not upload imported backup files to a server.
-
-If an import fails because of a wrong password, corrupted file, or unsupported format, the app is designed to protect existing local authenticator data from being silently overwritten.
+The encrypted file is checked for supported format and integrity, and the correct backup password is required. An incorrect password, tampered or damaged file, or unsupported format is rejected. Import is designed not to silently overwrite existing authenticator accounts or partially replace the vault when validation fails. You must confirm the import before accounts are saved.
 
 ## Master Password, Biometric Unlock, and Pattern Unlock
 
@@ -112,11 +112,9 @@ Kasa Authenticator does not upload QR code contents or scanned secrets to any se
 
 ## Screenshots and Clipboard
 
-Kasa Authenticator may use Android security features such as screenshot protection to help reduce accidental exposure of sensitive information.
+Screenshot and recent-app preview protection is enabled by default on sensitive app screens. If you choose, you can temporarily permit screenshots for 1–10 minutes; protection is restored after that interval or when the app goes into the background.
 
-If the app provides a copy-to-clipboard feature for TOTP codes, copied data may be temporarily available in the Android clipboard according to Android system behavior and app settings.
-
-Kasa Authenticator does not copy TOTP secrets to the clipboard.
+You can copy a generated TOTP code to the Android clipboard. Copied codes are marked as sensitive on Android 13 and later, and the app attempts to clear them automatically after a configurable 15, 30, or 60 seconds (30 seconds by default). Clipboard clearing is a best-effort protection: Android and other apps may control clipboard behavior, and a copied code may remain if the app process stops before its timer runs. Kasa Authenticator does not copy the underlying TOTP secret to the clipboard.
 
 ## Third-Party Services
 
@@ -147,13 +145,11 @@ The app does not use user data for advertising or tracking.
 
 ## Data Deletion
 
-Kasa Authenticator stores data locally on your device.
+Kasa Authenticator stores authenticator data locally. When you delete an account, the app provides a Trash feature with a default retention period of seven days, after which entries may be permanently removed according to the app's retention settings. Permanent deletion and clearing Trash should be treated as irreversible.
 
-You can delete authenticator accounts inside the app where supported.
+Android's automatic cloud backup and device-to-device app-data transfer are disabled for Kasa Authenticator. You can remove locally stored app data by uninstalling the app or clearing its storage through Android settings; doing so can remove stored credentials and local preferences, including the encrypted automatic backup password.
 
-You can also remove app data by uninstalling the app or clearing app storage through Android system settings.
-
-If you created encrypted backup files outside the app, you are responsible for deleting those files from wherever you stored them.
+Encrypted backup files saved outside the app, including those in folders you selected for manual or automatic backups, are not necessarily removed when the app is uninstalled or its storage is cleared. You are responsible for managing those files. Automatic Backup removes older automatic copies only within its selected folder and according to the configured retention limit.
 
 ## Security Limitations
 
@@ -179,4 +175,4 @@ If the app’s data practices change, this policy and the Google Play Data Safet
 
 If you have questions about this Privacy Policy, you can contact:
 
-**Email:** kasapassvault@gmail.com
+**Email:** kasa.passvault@gmail.com
