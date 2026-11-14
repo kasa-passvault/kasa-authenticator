@@ -1,6 +1,6 @@
 # Kasa Authenticator Privacy Policy
 
-**Last updated:** November 13, 2026
+**Last updated:** November 14, 2026
 
 Kasa Authenticator is an offline-first two-factor authentication (2FA) app for Android.
 
@@ -82,23 +82,33 @@ Kasa Authenticator supports manual and optional automatic encrypted backups. Bac
 
 **Your choice of storage:** The app does not upload backup files to KASA servers. You may select a local folder or a folder made available by an Android document provider, including a provider that synchronizes files to your own cloud account. If you select such a provider, its handling of the files is outside KASA's control. Backup files stored outside the app remain your responsibility, including their safe storage and deletion.
 
-Keep the backup password and relevant account recovery methods safe. Without the correct backup password, an encrypted backup may not be recoverable. Unlocking the app with a fingerprint or pattern does not by itself decrypt a backup file.
+Keep the backup password and relevant account recovery methods safe. Without the correct backup password, an encrypted backup may not be recoverable. Unlocking the app with a fingerprint or pattern does not decrypt a backup file. The separate, optional quick backup open feature described below can open a backup file with a fingerprint on the same phone.
+
+**Quick backup open with fingerprint (optional):** After a manual backup the app may ask whether this backup should open faster; the feature can also be turned on or off in Settings. While it is on, new manual and automatic backups made on this phone are prepared for it. For each prepared backup the app stores a local record in its private storage on this phone: the SHA-256 hash of the encrypted file (used to recognize the file by its content), whether the backup was manual or automatic, the creation time, the name of an Android Keystore key, and the file's decryption key wrapped (encrypted) with that Keystore key. The backup password and the unwrapped key are never written to the record. Nothing in the record is sent to KASA or any third party. The Keystore key can be used only after a new fingerprint check on this phone, every time; if the phone's fingerprints change, the key may become unusable and the backup password is used instead. Quick open works only on the phone where the record was made, and only when this phone has a valid quick-open record that matches the file's content. In every other case (on another phone, after reinstalling the app, for a file with no matching record, or when the fingerprint does not work) the backup password is needed; it always remains valid.
+
+Records are matched to files by content, not by name or location: a copied, moved, or renamed file still matches on this phone as long as its content is identical to the recorded file, even if it came from another place. A file whose content differs does not match and needs the backup password. Deleting a backup file, or the automatic removal of old automatic backups, does not delete its record. Choosing "Delete saved quick open records" in Settings deletes only the quick-open records and their Keystore keys; backup files, the stored automatic backup password, and your accounts are not touched, and those backups open with their password again. Clearing the app's data or uninstalling the app deletes far more: the quick-open records and keys together with the stored automatic backup password and all other app data on this phone. Backup files saved outside the app are not removed by this.
+
+**Automatic backups and quick open:** Automatic backups are prepared for quick open only while it is turned on. Preparing one needs no fingerprint, but opening it later always does. This does not change how the automatic backup password is stored (described above), and quick open does not make automatic backups more secure; it only makes opening them on this phone easier.
 
 ## Import
 
 When you choose a backup file through Android's document picker, Kasa Authenticator reads and processes it locally on your device. The app does not upload imported backup data to KASA servers.
 
-The encrypted file is checked for supported format and integrity, and the correct backup password is required. An incorrect password, tampered or damaged file, or unsupported format is rejected. Import is designed not to silently overwrite existing authenticator accounts or partially replace the vault when validation fails. You must confirm the import before accounts are saved.
+The encrypted file is checked for supported format and integrity, and the correct backup password is required (or, when this phone has a valid quick-open record that matches the selected backup file's content, a successful fingerprint check instead; see Backup and Export). An incorrect password, tampered or damaged file, or unsupported format is rejected. Import is designed not to silently overwrite existing authenticator accounts or partially replace the vault when validation fails.
+
+After the correct backup password is entered, or the fingerprint check succeeds, the app imports the accounts directly: there is no separate preview or second confirmation step. When the import has finished, the app shows how many accounts were added and how many were skipped.
 
 ## Master Password, Biometric Unlock, and Pattern Unlock
 
 Kasa Authenticator may use a local master password to protect access to the app.
 
-Optional biometric unlock and pattern unlock features are local quick-unlock methods.
+Optional biometric unlock and pattern unlock features are local quick-unlock methods. App biometric unlock uses the Android system's biometric prompt.
 
-Kasa Authenticator does not collect or receive your biometric data. Biometric authentication is handled by the Android system on your device.
+The separate quick backup open feature (see Backup and Export) uses only the fingerprint sensor, through Android's fingerprint service, and opens a backup file only when this phone has a valid quick-open record that matches the selected file's content; the file's name or location does not decide this.
 
-Your master password, backup password, and pattern data are not sent to KASA or any third party.
+Kasa Authenticator does not collect or receive your biometric data. Biometric and fingerprint checks are handled by the Android system on your device.
+
+Your master password, backup password, pattern data, and quick-open records are not sent to KASA or any third party.
 
 ## QR Code Scanning
 
@@ -123,7 +133,8 @@ Kasa Authenticator does not use third-party analytics, advertising SDKs, trackin
 The app may rely on standard Android system components, such as:
 
 - Android Keystore
-- Android BiometricPrompt
+- Android BiometricPrompt (app biometric unlock)
+- Android FingerprintManager (fingerprint-only quick backup open)
 - Android camera APIs
 - Android file picker / document picker
 
@@ -147,7 +158,7 @@ The app does not use user data for advertising or tracking.
 
 Kasa Authenticator stores authenticator data locally. When you delete an account, the app provides a Trash feature with a default retention period of seven days, after which entries may be permanently removed according to the app's retention settings. Permanent deletion and clearing Trash should be treated as irreversible.
 
-Android's automatic cloud backup and device-to-device app-data transfer are disabled for Kasa Authenticator. You can remove locally stored app data by uninstalling the app or clearing its storage through Android settings; doing so can remove stored credentials and local preferences, including the encrypted automatic backup password.
+Android's automatic cloud backup and device-to-device app-data transfer are disabled for Kasa Authenticator. You can remove locally stored app data by uninstalling the app or clearing its storage through Android settings; doing so can remove stored credentials and local preferences, including the encrypted automatic backup password and any quick-open records and their Keystore keys.
 
 Encrypted backup files saved outside the app, including those in folders you selected for manual or automatic backups, are not necessarily removed when the app is uninstalled or its storage is cleared. You are responsible for managing those files. Automatic Backup removes older automatic copies only within its selected folder and according to the configured retention limit.
 
